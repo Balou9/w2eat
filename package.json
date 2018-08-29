@@ -1,0 +1,26 @@
+{
+  "name": "w2eat",
+  "version": "0.0.0",
+  "description": "Browse repices to find out what you want to eat",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Balou9/w2eat.git"
+  },
+  "keywords": [
+    "eat",
+    "food"
+  ],
+  "author": "Emmanuel Owosekun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Balou9/w2eat/issues"
+  },
+  "homepage": "https://github.com/Balou9/w2eat#readme",
+  "dependencies": {
+    "tape": "^4.9.1"
+  }
+}
