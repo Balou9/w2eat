@@ -1,8 +1,8 @@
 const tape = require('tape')
+const http = require('http')
 const w2eatApiCall = require('./index.js')
 const catchMeal = require('./catchmeal.js')
 const url = 'http://www.recipepuppy.com/api/'
-const false_url = 'http://www.recipepuppy.com/api/adada'
 
 tape('w2eat - pass', t => {
   w2eatApiCall(url, function (err, data) {
@@ -12,12 +12,22 @@ tape('w2eat - pass', t => {
   })
 })
 
-// tape('w2eat fail', t => {
-//   w2eatApiCall(false_url, function (err, data) {
-//     if (err) t.end(err)
-//     t.end()
-//   })
-// })
+tape.only('w2eat fail', t => {
+  const port = 419
+
+  const requestHandler = (req, res) => {
+    res.statusCode = 500
+    response.end('Status Error 500')
+  }
+  const server = http.createServer(requestHandler)
+
+  server.listen(port, (err) => {
+    if (err) {
+      return err
+    }
+    console.log(`server is listening on ${port}`)
+  })
+})
 
 tape('chatchMeal - pass', t => {
   w2eatApiCall(url, function (err, data) {
