@@ -5,27 +5,26 @@ const catchMeal = require('./catchmeal.js')
 const url = 'http://www.recipepuppy.com/api/'
 
 tape('w2eat - pass', t => {
-  w2eatApiCall(url, function (err, data) {
+  w2eatApiCall(url, (err, data) => {
     if (err) t.end(err)
     t.true(data)
     t.end()
   })
 })
 
-tape.only('w2eat fail', t => {
-  const port = 419
-
-  const requestHandler = (req, res) => {
+tape('w2eat fail', t => {
+  const server = http.createServer((req, res) => {
     res.statusCode = 500
-    response.end('Status Error 500')
-  }
-  const server = http.createServer(requestHandler)
+    res.end()
+  })
 
-  server.listen(port, (err) => {
-    if (err) {
-      return err
-    }
-    console.log(`server is listening on ${port}`)
+  server.listen(41900, () => {
+    w2eatApiCall('http://localhost:41900', (err, data) => {
+      if (!err) t.end(Error('no error in cb'))
+      t.equal(err.message, '500 Request Failed.')
+      server.close()
+      t.end()
+    })
   })
 })
 
