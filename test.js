@@ -1,7 +1,7 @@
 const tape = require('tape')
 const http = require('http')
 const w2eatApiCall = require('./index.js')
-const catchMeal = require('./catchmeal.js')
+const { catchMeal } = require('./lib/catch.js')
 const url = 'http://www.recipepuppy.com/api/'
 
 tape('w2eat - pass', t => {
@@ -28,10 +28,18 @@ tape('w2eat fail', t => {
   })
 })
 
-tape('chatchMeal - pass', t => {
+tape('chatchMeal - title - pass', t => {
   w2eatApiCall(url, function (err, data) {
     if (err) t.end(err)
     t.true(catchMeal(data))
+    t.end()
+  })
+})
+
+tape('catchMeal - recipe - pass', t => {
+  w2eatApiCall(url, (err, data) => {
+    if (err) t.end(err)
+    t.true(catchMeal(data, true))
     t.end()
   })
 })
