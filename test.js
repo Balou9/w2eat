@@ -1,7 +1,10 @@
 const tape = require('tape')
 const http = require('http')
 const w2eatApiCall = require('./index.js')
-const { catchMeal } = require('./lib/catch.js')
+const {
+  catchMeal,
+  chooseMeal } = require('./lib/handlers.js')
+
 const url = 'http://www.recipepuppy.com/api/'
 
 tape('w2eat - pass', t => {
@@ -44,5 +47,16 @@ tape('catchMeal - recipe - pass', t => {
   })
 })
 
-// Pending
-// 1. Fail w2eat with false_url to get type error see usage.js
+tape('chooseMeal - title - pass', t => {
+  w2eatApiCall(url, (err, meals) => {
+    if (err) t.end(err)
+    const titleArray = catchMeal(meals)
+    chooseMeal('Chocolate-Cherry Thumbprints', titleArray, (err, result) => {
+      if (err) t.end(err)
+      t.true(result)
+      t.end()
+    })
+  })
+})
+
+// chooseMeal ...
