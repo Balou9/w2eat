@@ -47,16 +47,13 @@ tape('catchMeal - recipe - pass', t => {
   })
 })
 
-tape('chooseMeal - title - pass', t => {
+tape('chooseMeal - pass', t => {
   w2eatApiCall(url, (err, meals) => {
     if (err) t.end(err)
-    const titleArray = catchMeal(meals)
-    chooseMeal('Chocolate-Cherry Thumbprints', titleArray, (err, result) => {
+    chooseMeal('Chocolate-Cherry Thumbprints', meals, (err, result) => {
       if (err) t.end(err)
       t.true(result)
       t.end()
     })
   })
 })
-
-// chooseMeal ...

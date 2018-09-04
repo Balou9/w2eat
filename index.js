@@ -17,7 +17,7 @@ function w2eatApiCall (url, cb) {
 
     res.on('end', () => {
       try {
-         debug('calling back')
+        debug('calling back')
         cb(null, JSON.parse(accu))
       } catch (err) {
         return cb(err)
