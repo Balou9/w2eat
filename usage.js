@@ -5,20 +5,10 @@ const {
 
 const url = 'http://www.recipepuppy.com/api/'
 
-w2eatApiCall(url, (err, data) => {
-if (err) return err
-console.log('w2eat catchmeal:  ', catchMeal(data))
-})
-
-w2eatApiCall(url, (err, data) => {
-if (err) return err
-console.log('w2eat catchmeal and recipe:  ', catchMeal(data, true))
-})
-
 w2eatApiCall(url, (err, meals) => {
- if (err) return err
-   chooseMeal('Chocolate-Cherry Thumbprints', meals, (err, result) => {
-     if (err) return err
-     console.log('w2eat chooseMeal with choice:  ', result)
-   })
+if (err) return err
+  chooseMeal('Chocolate-Cherry Thumbprints', meals, (err, result) => {
+    if (err) return err
+    console.log('w2eat chooseMeal with choice:  ', result)
+  })
 })

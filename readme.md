@@ -1,8 +1,8 @@
 # w2eat
 
-What 2 eat?
+[![build status](http://img.shields.io/travis/Balou9/w2eat.svg?style=flat)](http://travis-ci.org/Balou9/w2eat) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Balou9/w2eat?branch=master&svg=true)](https://ci.appveyor.com/project/Balou9/w2eat)
 
-Pending What 2 do?
 
-- get href_recipe of randomly picked meal  // done
-- add callback to catchMeal
+`getAvailableMeals(obj, cb)` prints a list of available meals  
+`catchMeal(data, recipe)` prints randomly picked meal + recipe option  
+`chooseMeal(str, meals, cb)` prints meal object with specific choice

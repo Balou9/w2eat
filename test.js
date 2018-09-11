@@ -3,7 +3,9 @@ const http = require('http')
 const w2eatApiCall = require('./index.js')
 const {
   catchMeal,
-  chooseMeal } = require('./lib/handlers.js')
+  chooseMeal,
+  getAvailableMeals
+} = require('./lib/handlers.js')
 
 const url = 'http://www.recipepuppy.com/api/'
 
@@ -32,18 +34,24 @@ tape('w2eat fail', t => {
 })
 
 tape('chatchMeal - title - pass', t => {
-  w2eatApiCall(url, function (err, data) {
+  w2eatApiCall(url, (err, data) => {
     if (err) t.end(err)
-    t.true(catchMeal(data))
-    t.end()
+    catchMeal(data, undefined, (err, meal) => {
+      if (err) t.end(err)
+      t.true(meal)
+      t.end()
+    })
   })
 })
 
-tape('catchMeal - recipe - pass', t => {
+tape('chatchMeal - recipe - pass', t => {
   w2eatApiCall(url, (err, data) => {
     if (err) t.end(err)
-    t.true(catchMeal(data, true))
-    t.end()
+    catchMeal(data, true, (err, meal) => {
+      if (err) t.end(err)
+      t.true(meal)
+      t.end()
+    })
   })
 })
 
@@ -51,6 +59,17 @@ tape('chooseMeal - pass', t => {
   w2eatApiCall(url, (err, meals) => {
     if (err) t.end(err)
     chooseMeal('Chocolate-Cherry Thumbprints', meals, (err, result) => {
+      if (err) t.end(err)
+      t.true(result)
+      t.end()
+    })
+  })
+})
+
+tape('getAvailableMeals - pass', t => {
+  w2eatApiCall(url, (err, meals) => {
+    if (err) t.end(err)
+    getAvailableMeals(meals, (err, result) => {
       if (err) t.end(err)
       t.true(result)
       t.end()
