@@ -47,32 +47,55 @@ tape('chatchMeal - title - pass', t => {
 tape('chatchMeal - recipe - pass', t => {
   w2eatApiCall(url, (err, data) => {
     if (err) t.end(err)
-    catchMeal(data, true, (err, meal) => {
-      if (err) t.end(err)
-      t.true(meal)
-      t.end()
-    })
-  })
-})
-
-tape('chooseMeal - pass', t => {
-  w2eatApiCall(url, (err, meals) => {
-    if (err) t.end(err)
-    chooseMeal('Chocolate-Cherry Thumbprints', meals, (err, result) => {
+    catchMeal(data, true, (err, result) => {
       if (err) t.end(err)
       t.true(result)
       t.end()
     })
   })
 })
+
+// fix it
+tape('chooseMeal - pass', t => {
+
+  const choice = 'Chocolate-Cherry Thumbprints'
+
+  w2eatApiCall(url, (err, meals) => {
+    if (err) t.end(err)
+    chooseMeal(choice, meals, (err, result) => {
+      if (err) t.end(err)
+      t.true(result.title == choice)
+      t.end()
+    })
+  })
+})
+
+tape('chooseMeal - fail pt1 - no match', t => {
+  w2eatApiCall(url, (err, meals) => {
+    if (err) t.end(err)
+    chooseMeal('choice', meals, (err, result) => {
+      if (err) t.end(err)
+      t.same(result, [])
+      t.end()
+    })
+  })
+})
+
+// tape.only('chooseMeal - fail pt2 - not a string', t => {
+//   w2eatApiCall(url, (err, meals) => {
+//     if (err) t.end(err)
+//     chooseMeal(0, meals, (err, result) => {
+//     })
+//   })
+// })
 
 tape('getAvailableMeals - pass', t => {
-  w2eatApiCall(url, (err, meals) => {
-    if (err) t.end(err)
-    getAvailableMeals(meals, (err, result) => {
-      if (err) t.end(err)
-      t.true(result)
-      t.end()
-    })
-  })
+ w2eatApiCall(url, (err, meals) => {
+   if (err) t.end(err)
+   getAvailableMeals(meals, (err, result) => {
+     if (err) t.end(err)
+     t.true(result)
+     t.end()
+   })
+ })
 })
