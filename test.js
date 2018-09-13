@@ -55,7 +55,6 @@ tape('chatchMeal - recipe - pass', t => {
   })
 })
 
-// fix it
 tape('chooseMeal - pass', t => {
 
   const choice = 'Chocolate-Cherry Thumbprints'
@@ -64,7 +63,7 @@ tape('chooseMeal - pass', t => {
     if (err) t.end(err)
     chooseMeal(choice, meals, (err, result) => {
       if (err) t.end(err)
-      t.true(result.title == choice)
+      t.true(result.title === choice)
       t.end()
     })
   })
@@ -75,19 +74,19 @@ tape('chooseMeal - fail pt1 - no match', t => {
     if (err) t.end(err)
     chooseMeal('choice', meals, (err, result) => {
       if (err) t.end(err)
-      t.same(result, [])
+      t.true(result, [])
       t.end()
     })
   })
 })
 
-// tape.only('chooseMeal - fail pt2 - not a string', t => {
-//   w2eatApiCall(url, (err, meals) => {
-//     if (err) t.end(err)
-//     chooseMeal(0, meals, (err, result) => {
-//     })
-//   })
-// })
+tape.only('chooseMeal - fail pt2 - not a string', t => {
+  w2eatApiCall(url, (err, meals) => {
+  if (err) t.end(err)
+    chooseMeal(0, meals, (err, result) => {
+    })
+  })
+})
 
 tape('getAvailableMeals - pass', t => {
  w2eatApiCall(url, (err, meals) => {
