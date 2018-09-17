@@ -84,6 +84,7 @@ tape.only('chooseMeal - fail pt2 - not a string', t => {
   w2eatApiCall(url, (err, meals) => {
   if (err) t.end(err)
     chooseMeal(0, meals, (err, result) => {
+      t.end(err)
     })
   })
 })
