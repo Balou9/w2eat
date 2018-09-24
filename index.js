@@ -1,30 +1,33 @@
-// TO DO:
-// looking for an api
-
-const http = require('http')
-
-const debug = require('debug')('w2eat')
-
-function w2eatApiCall (url, cb) {
-  http.get(url, res => {
-    if (res.statusCode !== 200)
-      return cb(new Error(`${res.statusCode} Request Failed.`))
-
-    res.on('error', cb)
-
-    var accu = Buffer.alloc(0)
-    res.on('data', chunk => { accu = Buffer.concat([ accu, chunk ]) })
-
-    res.on('end', () => {
-      try {
-        debug('calling back')
-        cb(null, JSON.parse(accu))
-      } catch (err) {
-        return cb(err)
-      }
-    })
-
-  }).on('error', cb)
+function random (arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
 }
 
-module.exports = w2eatApiCall
+function catchMeal (obj, recipe, cb) {
+  var result = []
+  if (!recipe) { obj.results.forEach(meal => result.push(meal.title)) }
+  else { obj.results.forEach(meal => result.push([meal.title, meal.how2cook])) }
+  cb(null, random(result))
+}
+
+function chooseMeal (choice, obj, cb) {
+  if (typeof choice !== 'string') cb(new Error('first arg should be string'))
+  if (typeof obj !== 'object') cb(new Error('second arg should be obj'))
+  obj = obj.results
+    var result = []
+    for (var i = 0; i < obj.length; i++) {
+      if (obj[i].title === choice) result = obj[i]
+    }
+  cb(null, result)
+}
+
+function getAvailableMeals (obj, cb) {
+  var result = []
+  obj.results.map(meal => result.push(meal.title))
+  cb(null, result)
+}
+
+module.exports = {
+  catchMeal,
+  chooseMeal,
+  getAvailableMeals
+}
