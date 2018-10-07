@@ -1,7 +1,7 @@
 var recipes = {
   title: 'Recipes by Lüdi',
-  results:
-  [ { title: 'Buntes Gemüse mit Halloumi',
+  results: [
+    { title: 'Buntes Gemüse mit Halloumi',
       ingredients: 'Avocado, Haloumni, rote Zwiebel, Petersilie, Zitrone, Süßkartoffel, roter Chili, Tomate, Knoblauchzehe, gemahlener Kumin',
       how2cook: 'Cook it Halloumi'
     },
