@@ -1,7 +1,8 @@
-const w2eat = require('./index.js')
+const { W2eat, logger } = require('./index.js')
 const recipes = require('./recipe.js')
-const W2eat = new w2eat(recipes)
+const w2eat = new W2eat(recipes)
+const arr = w2eat.createTitleList()
 
-console.log(W2eat)
-console.log(W2eat.listMeals())
-console.log(W2eat.printRecipe('Köfte'))
+console.log(logger(arr))
+console.log(w2eat.createTitleList())
+console.log(w2eat.printRecipe('Köfte'))
