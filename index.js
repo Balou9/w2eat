@@ -1,12 +1,6 @@
 const fs = require('fs')
 const recipes = require('./recipe.js')
 
-function logger (list) {
-  for (var i = 0; i < list.length; i++) {
-     console.log(list[i])
-  }
-}
-
 function W2eat (obj) {
   if (!(this instanceof W2eat)) {
     return new W2eat(obj)
@@ -23,6 +17,5 @@ W2eat.prototype.printRecipe = function (meal) {
 }
 
 module.exports = {
-  W2eat,
-  logger
+  W2eat
 }
