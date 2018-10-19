@@ -1,4 +1,3 @@
-const fs = require('fs')
 const recipes = require('./recipe.js')
 
 function W2eat (obj) {
