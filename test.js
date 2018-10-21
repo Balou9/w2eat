@@ -8,9 +8,14 @@ tape('createTitleList - pass', t => {
   t.end()
 })
 
-
 tape('printRecipe - pass', t => {
   const w2eat = new W2eat(recipes)
   t.true(w2eat.printRecipe('Köfte'))
+  t.end()
+})
+
+tape('randomPick - pass', t => {
+  const w2eat = new W2eat(recipes)
+  t.true(w2eat.randomPick())
   t.end()
 })
