@@ -1,7 +1,7 @@
 const { W2eat } = require('./index.js')
-const { concatProcessStr } = require('concat-process-str')
 const recipes = require('./recipe.js')
 const program = require('commander')
+const args = require('minimist')(process.argv.slice(3))
 const w2eat = new W2eat(recipes)
 
 program
@@ -28,10 +28,7 @@ program
   .alias('how2')
   .description('Prints ingredients + recipe of specified meal')
   .action(function () {
-    concatProcessStr(process.argv, (err, data) => {
-      if (err) console.error(err)
-      console.log(w2eat.printRecipe(data))
-    })
+      console.log(w2eat.printRecipe(args._.join(" ")))
   })
 
 program.parse(process.argv)

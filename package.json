@@ -22,10 +22,10 @@
   "homepage": "https://github.com/Balou9/w2eat#readme",
   "dependencies": {
     "commander": "^2.19.0",
-    "concat-process-str": "0.0.2",
     "tape": "^4.9.1"
   },
   "devDependencies": {
-    "debug": "^4.1.0"
+    "debug": "^4.1.0",
+    "minimist": "^1.2.0"
   }
 }
